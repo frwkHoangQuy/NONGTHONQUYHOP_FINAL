@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
 </head>
-
 <body>
     <div class="header fade-in">
         <h1>XÂY DỰNG NÔNG THÔN MỚI HUYỆN QUỲ HỢP</h1>
@@ -71,6 +69,9 @@
         </ul>
     </div>
     <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        var BaseUrl = '@ViewBag.BaseUrl';
+        localStorage.setItem('BaseUrl', BaseUrl);
+    </script>
 </body>
-
 </html>

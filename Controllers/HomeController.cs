@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
@@ -12,17 +12,17 @@ namespace WebApplication3.Controllers
         {
             _configuration = configuration;
         }
+
         public IActionResult Index()
         {
-            var BaseUrl = _configuration.GetValue<string>("BaseUrl");
-            ViewBag.BaseUrl = BaseUrl;
+            ViewBag.BaseUrl = _configuration.GetValue<string>("BaseUrl");
             return View("index");
         }
 
         public IActionResult ChiTietTinTuc()
         {
+            ViewBag.BaseUrl = _configuration.GetValue<string>("BaseUrl");
             return View("chi-tiet-tin-tuc");
         }
     }
 }
-

@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    console.log(BaseUrl);
+    var BaseUrl = localStorage.getItem('BaseUrl');
     const allNews = [];
     let filteredNews = [];
     const itemsPerPage = 12;

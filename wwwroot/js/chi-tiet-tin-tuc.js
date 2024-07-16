@@ -10,6 +10,7 @@
     }
 
     const newsId = getParameterByName('ID');
+    var BaseUrl = localStorage.getItem('BaseUrl');
 
     $.ajax({
         url: `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=1&pageSize=12&tukhoa=&loai=0&sort=1`,
