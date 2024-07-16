@@ -12,7 +12,7 @@
     const newsId = getParameterByName('ID');
 
     $.ajax({
-        url: 'https://bandoso.vnptnghean.com.vn:9448/api/v1/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=1&pageSize=12&tukhoa=&loai=0&sort=1',
+        url: `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=1&pageSize=12&tukhoa=&loai=0&sort=1`,
         method: 'GET',
         xhrFields: { withCredentials: true },
         success: function (response) {
