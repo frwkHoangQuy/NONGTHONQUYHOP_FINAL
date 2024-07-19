@@ -1,11 +1,15 @@
 ﻿$(document).ready(function () {
+    // Lấy URL cơ sở từ localStorage
     var BaseUrl = localStorage.getItem('BaseUrl');
-    const allNews = [];
+    let allNews = [];
     let filteredNews = [];
-    const itemsPerPage = 12;
+    const itemsPerPage = 6;
+    let pageNumber = 1;
     const $newsGrid = $('.news-grid');
     const $paginationContainer = $('#pagination-container');
+    let currentFilter = 'all';
 
+    // Hàm hiển thị danh sách tin tức
     function renderNews(items) {
         $newsGrid.empty();
         items.forEach(news => {
@@ -32,86 +36,101 @@
         });
     }
 
-    function paginate(items) {
+    // Hàm tạo phân trang
+    function paginate(total) {
         $paginationContainer.pagination({
-            items: items.length,
+            items: total,
             itemsOnPage: itemsPerPage,
-            onPageClick: function (pageNumber) {
-                const start = (pageNumber - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                renderNews(items.slice(start, end));
+            currentPage: pageNumber,
+            onPageClick: function (pageNum, event) {
+                event.preventDefault();
+                pageNumber = pageNum; // Cập nhật số trang khi người dùng chọn trang cụ thể
+                fetchNews(currentFilter); // Gọi API để lấy dữ liệu mới
             }
         });
     }
 
+    // Hiển thị spinner tải
     function showLoadingSpinner() {
         $('#loading-spinner').show();
     }
 
+    // Ẩn spinner tải
     function hideLoadingSpinner() {
         $('#loading-spinner').hide();
     }
 
-    $.ajax({
-        url: `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=1&pageSize=12&tukhoa=&loai=0&sort=1`,
-        method: 'GET',
-        xhrFields: { withCredentials: true },
-        beforeSend: function () {
-            showLoadingSpinner();
-        },
-        success: function (response) {
-            if (response.Success) {
-                const data = response.Data.DuLieu;
-                allNews.push(...data);
-                filteredNews = allNews;
-                paginate(filteredNews);
-                renderNews(filteredNews.slice(0, itemsPerPage));
-            } else {
-                console.error('Error fetching news data', response.Message);
-            }
-        },
-        error: function (err) {
-            console.error('Error fetching news data', err);
-        },
-        complete: function () {
-            hideLoadingSpinner();
+    // Hàm lấy tin tức từ API
+    function fetchNews(filter) {
+        let url = `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=${pageNumber}&pageSize=${itemsPerPage}&tukhoa=&loai=0&sort=1`;
+        if (filter === 'news') {
+            url = `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=${pageNumber}&pageSize=${itemsPerPage}&tukhoa=&loai=1&sort=1`;
+        } else if (filter === 'events') {
+            url = `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=${pageNumber}&pageSize=${itemsPerPage}&tukhoa=&loai=2&sort=1`;
         }
-    });
 
+        $.ajax({
+            url: url,
+            method: 'GET',
+            xhrFields: { withCredentials: true },
+            beforeSend: function () {
+                showLoadingSpinner();
+            },
+            success: function (response) {
+                if (response.Success) {
+                    const data = response.Data.DuLieu;
+                    const tongso = response.Data.TongSo;
+                    if (filter === 'all') {
+                        allNews = data;
+                        filteredNews = allNews;
+                    } else {
+                        filteredNews = data;
+                    }
+                    paginate(tongso);
+                    renderNews(filteredNews);
+                } else {
+                    console.error('Lỗi khi lấy dữ liệu tin tức', response.Message);
+                }
+            },
+            error: function (err) {
+                console.error('Lỗi khi lấy dữ liệu tin tức', err);
+            },
+            complete: function () {
+                hideLoadingSpinner();
+            }
+        });
+    }
+
+    // Bắt sự kiện khi người dùng chọn bộ lọc
     $('.filter-button').on('click', function () {
         $('.filter-button').removeClass('active');
         $(this).addClass('active');
 
-        const filter = $(this).data('filter');
-        if (filter === 'all') {
-            filteredNews = allNews;
-        } else if (filter === 'news') {
-            filteredNews = allNews.filter(item => item.LOAI === 1);
-        } else if (filter === 'events') {
-            filteredNews = allNews.filter(item => item.LOAI !== 1);
-        }
-
-        paginate(filteredNews);
-        renderNews(filteredNews.slice(0, itemsPerPage));
+        currentFilter = $(this).data('filter');
+        pageNumber = 1; // Đặt lại trang đầu tiên khi áp dụng bộ lọc
+        fetchNews(currentFilter);
     });
 
+    // Bắt sự kiện khi người dùng click vào breadcrumb
     $(document).on('click', '.breadcrumb a', function (event) {
         event.preventDefault();
         const breadcrumbText = $(this).text();
         if (breadcrumbText === 'Tin tức - Sự kiện') {
-            paginate(filteredNews);
-            renderNews(filteredNews.slice(0, itemsPerPage));
-            $('.breadcrumb').html(`
-                <a href="#">Trang chủ</a> &gt;
-                <a href="#">Tin tức - Sự kiện</a>
-            `);
+            currentFilter = 'all';
+            pageNumber = 1; // Đặt lại trang đầu tiên
+            fetchNews(currentFilter);
+            $('.breadcrumb').html(
+                `<a href="#">Trang chủ</a> &gt; <a href="#">Tin tức - Sự kiện</a>`
+            );
         }
     });
 
+    // Hàm cuộn lên đầu trang
     function scrollToTop() {
         $('html, body').animate({ scrollTop: 0 }, 'smooth');
     }
 
+    // Bắt sự kiện cuộn trang
     $(window).on('scroll', function () {
         const nav = $('.nav');
         const content = $('.content');
@@ -125,6 +144,7 @@
         }
     });
 
+    // Tạo các mục navbar
     const navbarItem = [
         { name: "Trang chủ", breadcrumb: "Trang chủ" },
         { name: "Sản phẩm", breadcrumb: "Sản phẩm" },
@@ -136,31 +156,35 @@
 
     const navbar = $('.nav ul');
     navbarItem.forEach((item) => {
-        const newItem = $('<li><a href="#">' + item.name + '</a></li>');
+        const newItem = $(`<li><a href="#">${item.name}</a></li>`);
         newItem.on('click', function () {
             $('.nav ul li a').removeClass('active');
             $(this).find('a').addClass('active');
             $('.breadcrumb').html(
-                '<a href="#">Trang chủ</a> &gt; <a href="#">' + item.breadcrumb + '</a>'
+                `<a href="#">Trang chủ</a> &gt; <a href="#">${item.breadcrumb}</a>`
             );
         });
         navbar.append(newItem);
     });
 
+    // Bắt sự kiện khi người dùng click vào nút menu
     $('#menu-toggle').click(function () {
         $('#slide-menu').toggleClass('active');
     });
 
+    // Đóng menu khi click ra ngoài
     $(document).click(function (event) {
         if (!$(event.target).closest('#menu-toggle, #slide-menu').length) {
             $('#slide-menu').removeClass('active');
         }
     });
 
+    // Bắt sự kiện khi người dùng click vào nút cuộn lên đầu trang
     $('#back-to-top').click(function () {
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
+    // Bắt sự kiện cuộn trang để thay đổi trạng thái thanh điều hướng
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('.nav').addClass('scrolled');
@@ -168,4 +192,7 @@
             $('.nav').removeClass('scrolled');
         }
     });
+
+    // Gọi hàm lấy tin tức khi tải trang
+    fetchNews('all');
 });

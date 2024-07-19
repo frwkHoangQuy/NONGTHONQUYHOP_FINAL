@@ -13,13 +13,12 @@
     var BaseUrl = localStorage.getItem('BaseUrl');
 
     $.ajax({
-        url: `${BaseUrl}/TinTuc/GetByPaging?maQuanHuyen=9&pageNumber=1&pageSize=12&tukhoa=&loai=0&sort=1`,
+        url: `${BaseUrl}/TinTuc/GetById/${newsId}`,
         method: 'GET',
         xhrFields: { withCredentials: true },
         success: function (response) {
             if (response.Success) {
-                const data = response.Data.DuLieu;
-                const news = data.find(item => item.ID === parseInt(newsId));
+                const news = response.Data;
                 if (news) {
                     const detailContent = `
                         <div class="news-detail">
@@ -52,7 +51,7 @@
         event.preventDefault();
         const breadcrumbText = $(this).text();
         if (breadcrumbText === 'Tin tức - Sự kiện') {
-            window.location.href = 'https://localhost:7267/';
+            window.location.href = '';
         }
     });
 });

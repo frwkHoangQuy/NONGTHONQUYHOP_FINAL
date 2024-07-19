@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Nông Thôn Mới</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/simplePagination.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -68,7 +68,8 @@
             <li><a href="#">Cơ sở sản xuất</a></li>
         </ul>
     </div>
-    <script src="/js/main.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
     <script type="text/javascript">
         var BaseUrl = '@ViewBag.BaseUrl';
         localStorage.setItem('BaseUrl', BaseUrl);

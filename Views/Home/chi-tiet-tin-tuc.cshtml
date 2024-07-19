@@ -15,7 +15,10 @@
 <div id="loading-spinner" class="loading-spinner" style="display:none;">
     <div class="spinner"></div>
 </div>
-<script>
-    var BaseUrl = "@BaseUrl";
-</script>
-<script src="/js/chi-tiet-tin-tuc.js"></script>
+
+@section Scripts {
+    <script>
+        var BaseUrl = "@BaseUrl";
+    </script>
+    <script src="~/js/chi-tiet-tin-tuc.js"></script>
+}
