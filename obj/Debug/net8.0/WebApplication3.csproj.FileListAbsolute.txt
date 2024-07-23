@@ -13,6 +13,7 @@ C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.cspro
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.RazorAssemblyInfo.cache
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.RazorAssemblyInfo.cs
+C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.sourcelink.json
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\staticwebassets\msbuild.WebApplication3.Microsoft.AspNetCore.StaticWebAssets.props
@@ -28,4 +29,6 @@ C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\refint\WebApplication
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.pdb
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.genruntimeconfig.cache
 C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\ref\WebApplication3.dll
-C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.sourcelink.json
+C:\Users\QUY\source\repos\WebApplication3\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebApplication3.csproj.AssemblyReference.cache
+C:\Users\QUY\source\repos\WebApplication3\obj\Debug\net8.0\WebAppli.18867FDF.Up2Date
