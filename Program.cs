@@ -1,9 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllersWithViews();
 
-// Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -16,7 +15,7 @@ builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -28,9 +27,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // Add this line to use session
+app.UseSession();
 
 app.UseAuthorization();
+
+app.UseMiddleware<WebApplication3.Middlewares.SessionCheckMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
@@ -15,6 +13,7 @@ namespace WebApplication3.Controllers
 
         public IActionResult Index()
         {
+
             ViewBag.BaseUrl = _configuration.GetValue<string>("BaseUrl");
             return View("index");
         }

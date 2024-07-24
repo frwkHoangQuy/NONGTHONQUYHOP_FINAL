@@ -1,5 +1,4 @@
-﻿if (!sessionStorage.getItem('token')) {
-    window.location.href = "/login";
+﻿if (sessionStorage.getItem('token')) {
 } else {
     $(document).ready(function () {
         // Lấy URL cơ sở từ localStorage
