@@ -17,21 +17,22 @@ namespace WebApplication3.Middlewares
         {
             var path = context.Request.Path.Value;
 
-            // Allow access to the login page and login API endpoint without session
-            if (path.Equals("/Login", StringComparison.OrdinalIgnoreCase) ||
-                path.Equals("/Login/Login", StringComparison.OrdinalIgnoreCase))
+            // Kiểm tra nếu session token tồn tại
+            var token = context.Session.GetString("Token");
+
+            // Nếu không có token và không phải truy cập trang login thì chuyển hướng đến trang login
+            if (string.IsNullOrEmpty(token) && !path.Equals("/Login", StringComparison.OrdinalIgnoreCase) &&
+                !path.Equals("/Login/Login", StringComparison.OrdinalIgnoreCase))
             {
-                await _next(context);
+                context.Response.Redirect("/Login");
                 return;
             }
 
-            // Check if the session token exists
-            var token = context.Session.GetString("Token");
-
-            // Redirect to login page if the token is missing
-            if (string.IsNullOrEmpty(token))
+            // Nếu có token và đang cố gắng truy cập trang login thì chuyển hướng đến trang home
+            if (!string.IsNullOrEmpty(token) && (path.Equals("/Login", StringComparison.OrdinalIgnoreCase) ||
+                path.Equals("/Login/Login", StringComparison.OrdinalIgnoreCase)))
             {
-                context.Response.Redirect("/Login");
+                context.Response.Redirect("/");
                 return;
             }
 
