@@ -1,4 +1,8 @@
-﻿namespace WebApplication3.Middlewares
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Threading.Tasks;
+
+namespace WebApplication3.Middlewares
 {
     public class SessionCheckMiddleware
     {
@@ -13,15 +17,18 @@
         {
             var path = context.Request.Path.Value;
 
+            // Allow access to the login page and login API endpoint without session
             if (path.Equals("/Login", StringComparison.OrdinalIgnoreCase) ||
-                path.Equals("/api/LoginApi/Login", StringComparison.OrdinalIgnoreCase))
+                path.Equals("/Login/Login", StringComparison.OrdinalIgnoreCase))
             {
                 await _next(context);
                 return;
             }
 
+            // Check if the session token exists
             var token = context.Session.GetString("Token");
 
+            // Redirect to login page if the token is missing
             if (string.IsNullOrEmpty(token))
             {
                 context.Response.Redirect("/Login");
