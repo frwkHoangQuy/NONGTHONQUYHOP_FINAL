@@ -29,6 +29,14 @@
       "PackagePath": "staticwebassets\\js\\chi-tiet-tin-tuc.js"
     },
     {
+      "Id": "C:\\Users\\QUY\\source\\repos\\WebApplication3\\wwwroot\\js\\doanhnghiep.js",
+      "PackagePath": "staticwebassets\\js\\doanhnghiep.js"
+    },
+    {
+      "Id": "C:\\Users\\QUY\\source\\repos\\WebApplication3\\wwwroot\\js\\home.js",
+      "PackagePath": "staticwebassets\\js\\home.js"
+    },
+    {
       "Id": "C:\\Users\\QUY\\source\\repos\\WebApplication3\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
     },

@@ -1,5 +1,4 @@
-﻿/* 
-$(document).ready(function () {
+﻿$(document).ready(function () {
     const BaseUrl = localStorage.getItem('BaseUrl');
     let allNews = [];
     let filteredNews = [];
@@ -13,19 +12,19 @@ $(document).ready(function () {
         $newsGrid.empty();
         items.forEach(news => {
             const newsItem = $(`
-                    <div class="news-item">
-                        <img src="${news.HINHANH}" alt="News Image" height="150" width="300">
-                        <div class="info">
-                            <div class="meta">
-                                <span>${new Date(news.NGAY_TAO).toLocaleDateString()}</span>
-                                <span>${news.LOAI === 1 ? 'Tin tức' : 'Sự kiện'}</span>
-                                <span>${news.LUOT_XEM}</span>
-                            </div>
-                            <h3>${news.TIEU_DE}</h3>
-                            <p>${news.MO_TA}</p>
+                <div class="news-item">
+                    <img src="${news.HINHANH}" alt="News Image" height="150" width="300">
+                    <div class="info">
+                        <div class="meta">
+                            <span>${new Date(news.NGAY_TAO).toLocaleDateString()}</span>
+                            <span>${news.LOAI === 1 ? 'Tin tức' : 'Sự kiện'}</span>
+                            <span>${news.LUOT_XEM}</span>
                         </div>
+                        <h3>${news.TIEU_DE}</h3>
+                        <p>${news.MO_TA}</p>
                     </div>
-                `);
+                </div>
+            `);
             newsItem.on('click', function () {
                 window.location.href = `Home/ChiTietTinTuc?ID=${news.ID}`;
             });
@@ -122,67 +121,5 @@ $(document).ready(function () {
         nav.toggleClass('scrolled', scrollPosition > changePosition);
     });
 
-    const navbarItems = [
-        { name: "Trang chủ", breadcrumb: "Trang chủ" },
-        { name: "Sản phẩm", breadcrumb: "Sản phẩm" },
-        { name: "Tin tức", breadcrumb: "Tin tức" },
-        { name: "Hình ảnh - Sự kiện", breadcrumb: "Hình ảnh - Sự kiện" },
-        { name: "Cơ sở sản xuất", breadcrumb: "Cơ sở sản xuất" },
-        { name: "Đăng xuất", breadcrumb: "" }
-    ];
-
-    const $navbar = $('.nav ul');
-    navbarItems.forEach(item => {
-        const newItem = $(`<li><a href="#">${item.name}</a></li>`);
-        newItem.on('click', function () {
-            $('.nav ul li a').removeClass('active');
-            $(this).find('a').addClass('active');
-            $('.breadcrumb').html(
-                `<a href="#">Trang chủ</a> &gt; <a href="#">${item.breadcrumb}</a>`
-            );
-            if (item.name === "Đăng xuất") {
-                logout();
-            } else if (item.name === "Cơ sở sản xuất") {
-                console.log(1);
-                window.location.href = '/DoanhNghiep';
-            }
-        });
-        $navbar.append(newItem);
-    });
-
-    function logout() {
-        $.ajax({
-            url: `/Login/Logout`,
-            method: 'POST',
-            xhrFields: { withCredentials: true },
-            success: function () {
-                sessionStorage.removeItem('token');
-                window.location.href = 'Login/Index';
-            },
-            error: function (err) {
-                console.error('Lỗi khi đăng xuất', err);
-            }
-        });
-    }
-
-    $('#menu-toggle').click(function () {
-        $('#slide-menu').toggleClass('active');
-    });
-
-    $(document).click(function (event) {
-        if (!$(event.target).closest('#menu-toggle, #slide-menu').length) {
-            $('#slide-menu').removeClass('active');
-        }
-    });
-
-    $('#back-to-top').click(function () {
-        $('html, body').animate({ scrollTop: 0 }, 'slow');
-    });
-
-    $(window).scroll(function () {
-        $('.nav').toggleClass('scrolled', $(this).scrollTop() > 50);
-    });
-
     fetchNews('all');
 });
- */

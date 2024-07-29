@@ -39,7 +39,7 @@ namespace WebApplication3.Controllers
                         if (!string.IsNullOrEmpty(loginResponse.Data?.JWToken))
                         {
                             HttpContext.Session.SetString("Token", loginResponse.Data.JWToken);
-                            return RedirectToAction("Index", "Home"); 
+                            return RedirectToAction("Index", "Home");
                         }
                         else
                         {

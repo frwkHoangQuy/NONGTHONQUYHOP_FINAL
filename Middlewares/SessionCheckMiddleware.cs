@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
-
-namespace WebApplication3.Middlewares
+﻿namespace WebApplication3.Middlewares
 {
     public class SessionCheckMiddleware
     {

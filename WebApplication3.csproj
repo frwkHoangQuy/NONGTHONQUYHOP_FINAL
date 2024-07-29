@@ -7,14 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\layout.js" />
     <Content Remove="wwwroot\js\login.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\layout.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\login.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\layout.js" />
     <None Include="wwwroot\js\login.js" />
   </ItemGroup>
 
