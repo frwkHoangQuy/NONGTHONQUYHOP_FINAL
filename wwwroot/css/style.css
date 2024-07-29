@@ -1,18 +1,20 @@
-﻿body {
+﻿/* Global Styles */
+body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     background-color: #f0f2f5;
     width: 100%;
 }
 
+/* Header Styles */
 .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     height: 204px;
     background: url('/blurred_orange_tree_background.jpg') center/cover no-repeat;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
     padding-bottom: 16px;
 }
 
@@ -25,27 +27,27 @@
 }
 
 .header p {
-    width: 60%;
-    margin: 0;
     font-size: 16px;
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    width: 60%;
+    margin: 0;
     margin-bottom: 16px;
+    animation: fadeIn 1s ease-in-out;
 }
 
+/* Navigation Styles */
 .nav {
-    height: 90px;
-    background-color: transparent;
-    position: fixed;
-    width: 100vw;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s, color 0.3s;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 32px;
-    padding-right: 32px;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 90px;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 0 32px;
 }
 
 .nav.scrolled {
@@ -54,25 +56,25 @@
 }
 
 .nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
     margin-right: 100px;
 }
 
 .nav ul li {
-    margin: 0 10px;
     display: flex;
     align-items: center;
+    margin: 0 10px;
 }
 
 .nav ul li a {
+    font-size: 20px;
     text-decoration: none;
     color: white;
-    font-size: 20px;
     padding: 10px 20px;
     border-radius: 20px;
     transition: background-color 0.3s, color 0.3s;
@@ -93,6 +95,7 @@
     color: white !important;
 }
 
+/* Content Styles */
 .content {
     max-width: 1400px;
     margin: 20px auto;
@@ -100,12 +103,12 @@
 }
 
 .top-bar {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
     flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -125,9 +128,9 @@
 }
 
 .filter {
-    min-width: 300px;
     display: flex;
     align-items: center;
+    min-width: 300px;
 }
 
 .filter div {
@@ -160,19 +163,20 @@
 
 .news-grid {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-
 }
 
 .news-item {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 24%;
-    animation: fadeIn 1s ease-in-out;
     margin-bottom: 2%;
+    animation: fadeIn 1s ease-in-out;
+    margin: 0px 0.5%;
 }
 
 .news-item:hover {
@@ -215,6 +219,7 @@
     color: #666;
 }
 
+/* Pagination Styles */
 #pagination-container {
     display: flex;
     justify-content: center;
@@ -247,14 +252,15 @@
     background-color: #0056b3;
 }
 
+/* Footer Styles */
 .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #007bff;
     color: white;
     padding: 20px 0;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .footer-section {
@@ -285,6 +291,7 @@
     text-decoration: underline;
 }
 
+/* Back-to-Top Button Styles */
 #back-to-top {
     position: fixed;
     bottom: 20px;
@@ -302,6 +309,7 @@
     background-color: #003f7f;
 }
 
+/* Animation Keyframes */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -322,6 +330,7 @@
     }
 }
 
+/* Additional Animations */
 .fade-in {
     animation: fadeIn 1s ease-in-out;
 }
@@ -330,6 +339,7 @@
     animation: slideInFromLeft 0.5s ease-out;
 }
 
+/* News Detail Styles */
 .news-detail {
     padding: 20px;
     background-color: white;
@@ -353,7 +363,11 @@
     color: #666;
 }
 
+/* Menu Toggle and Slide Menu Styles */
 .menu-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -361,8 +375,6 @@
     border-radius: 5px;
     cursor: pointer;
     animation: fadeIn 1s ease-in-out;
-    width: 40px;
-    height: 40px;
 }
 
 .menu-toggle:hover {
@@ -370,6 +382,7 @@
 }
 
 .slide-menu {
+    display: none;
     position: fixed;
     top: 0;
     right: -250px;
@@ -380,6 +393,10 @@
     transition: right 0.3s ease-in-out;
     z-index: 1500;
     padding-top: 50px;
+}
+
+.slide-menu.active {
+    right: 0;
 }
 
 .slide-menu ul {
@@ -393,9 +410,9 @@
 }
 
 .slide-menu ul li a {
+    font-size: 18px;
     text-decoration: none;
     color: black;
-    font-size: 18px;
     padding: 10px 20px;
     display: block;
     transition: background-color 0.3s;
@@ -405,33 +422,26 @@
     background-color: #f0f0f0;
 }
 
-.slide-menu.active {
-    right: 0;
-}
-
-#menu-toggle {
-    display: none;
-}
-
+/* Loading Spinner Styles */
 .loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 9999;
 }
 
 .spinner {
+    width: 120px;
+    height: 120px;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
     animation: spin 2s linear infinite;
 }
 
@@ -439,21 +449,15 @@
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
 }
 
+/* Media Queries */
 @media (max-width: 1439px) {
     .header {
         height: 212px;
-        background: url('/blurred_orange_tree_background.jpg') center/cover no-repeat;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: center;
         padding-bottom: 4px;
     }
 
@@ -466,7 +470,7 @@
     }
 
     .nav ul li {
-        margin: 0 0px;
+        margin: 0;
     }
 
     .nav img {
@@ -478,9 +482,7 @@
     }
 
     .news-grid {
-        display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
     }
 
     .news-item {
@@ -491,12 +493,6 @@
 @media (max-width: 1023px) {
     .header {
         height: 250px;
-        background: url('/blurred_orange_tree_background.jpg') center/cover no-repeat;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: center;
         padding-bottom: 4px;
     }
 
@@ -508,33 +504,23 @@
         width: 49%;
     }
 
-    .menu-wrap{
+    .menu-wrap {
         display: flex;
-        flex-direction: row;
         justify-content: flex-end;
         padding-right: 2%;
         width: 30%;
     }
 
     .top-bar {
-        width: 100%;
-        display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        animation: fadeIn 1s ease-in-out;
     }
 
     .top-bar .breadcrumb {
         width: 100%;
-        justify-content: start;
     }
 
     .filter {
         width: 100%;
-        display: flex;
         flex-direction: row;
         justify-content: space-between;
         gap: 16px;
@@ -542,7 +528,6 @@
 
     .filter div {
         width: 80%;
-        display: flex;
         justify-content: space-between;
     }
 
@@ -561,10 +546,6 @@
         margin-right: 0;
     }
 
-    #menu-toggle {
-        display: block;
-    }
-
     .nav ul li:not(:last-child) {
         display: none;
     }
@@ -572,10 +553,14 @@
     .nav ul li:last-child {
         display: flex;
     }
+
+    #menu-toggle {
+        display: block;
+    }
 }
 
-@media (max-width: 767px){
-    .header{
+@media (max-width: 767px) {
+    .header {
         height: 180px;
     }
 
@@ -583,12 +568,12 @@
         display: none;
     }
 
-    .header h1{
+    .header h1 {
         text-align: center;
         width: 90%;
     }
 
-    .menu-wrap{
+    .menu-wrap {
         width: 50%;
     }
 
@@ -600,17 +585,15 @@
 
     .filter input {
         width: 35%;
-        display: flex;
-        justify-content: space-between;
     }
-    
+
     .news-item {
         width: 100%;
     }
 }
 
-@media (max-width: 320px){
-    .header{
+@media (max-width: 424px) {
+    .header {
         height: 220px;
     }
 
@@ -618,16 +601,16 @@
         display: none;
     }
 
-    .header h1{
+    .header h1 {
         text-align: center;
         width: 95%;
     }
 
-    .menu-wrap{
+    .menu-wrap {
         width: 80%;
     }
 
-    .nav img{
+    .nav img {
         margin-left: 10px;
     }
 
@@ -639,17 +622,16 @@
 
     .filter input {
         width: 35%;
-        display: flex;
-        justify-content: space-between;
     }
-    
+
     .news-item {
         width: 100%;
     }
 
-    .filter div{
+    .filter div {
         display: none;
     }
+
     .filter input {
         width: 100%;
     }
