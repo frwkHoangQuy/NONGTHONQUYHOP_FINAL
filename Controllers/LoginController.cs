@@ -1,11 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace WebApplication3.Controllers
 {
@@ -44,8 +38,8 @@ namespace WebApplication3.Controllers
                     {
                         if (!string.IsNullOrEmpty(loginResponse.Data?.JWToken))
                         {
-                            HttpContext.Session.SetString("Token", loginResponse.Data.JWToken); // Storing token in session
-                            return RedirectToAction("Index", "Home"); // Redirect to home page after successful login
+                            HttpContext.Session.SetString("Token", loginResponse.Data.JWToken);
+                            return RedirectToAction("Index", "Home"); 
                         }
                         else
                         {
