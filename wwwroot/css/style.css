@@ -702,3 +702,10 @@ body {
     margin-right: 8px;
     color: #22a6b3;
 }
+
+.data-grid{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
