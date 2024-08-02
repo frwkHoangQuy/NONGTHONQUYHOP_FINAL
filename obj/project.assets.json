@@ -4879,7 +4879,8 @@
       "Microsoft.EntityFrameworkCore >= 8.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.7",
-      "Microsoft.Extensions.Http >= 8.0.0"
+      "Microsoft.Extensions.Http >= 8.0.0",
+      "Microsoft.SqlServer.Server >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4948,6 +4949,10 @@
           "Microsoft.Extensions.Http": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "Microsoft.SqlServer.Server": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "imports": [
