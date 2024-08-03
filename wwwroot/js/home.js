@@ -13,7 +13,9 @@
         items.forEach(news => {
             const newsItem = $(`
                 <div class="news-item">
-                    <img src="${news.HINHANH}" alt="News Image" height="150" width="300">
+                    <div class="img">
+                        <img src="${news.HINHANH}" alt="News Image" height="150" width="300">
+                    </div>
                     <div class="info">
                         <div class="meta">
                             <span>${new Date(news.NGAY_TAO).toLocaleDateString()}</span>

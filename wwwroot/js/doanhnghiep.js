@@ -14,13 +14,17 @@ $(document).ready(function () {
     items.forEach(item => {
       const dataItem = $(`
               <div class="data-item">
-                  <img src="${item.DUONG_DAN}" alt="Image" height="150" width="300">
+                  <div class="img">
+                    <img src="${item.DUONG_DAN}" alt="Image" height="150" width="300">
+                  </div>
                   <div class="info">
                       <h3>${item.TENDN}</h3>
                       <p>Đại diện: ${item.NGUOIDAIDIEN || 'Không có thông tin'}</p>
-                      <p>Địa chỉ: ${item.DIACHI}</p>
-                      <p>Điện thoại: ${item.DIENTHOAI || 'Không có thông tin'}</p>
-                      <p>Email: ${item.EMAIL || 'Không có thông tin'}</p>
+                      <div class="info-wrap">
+                        <p>Địa chỉ: ${item.DIACHI}</p>
+                        <p>Điện thoại: ${item.DIENTHOAI || 'Không có thông tin'}</p>
+                        <p>Email: ${item.EMAIL || 'Không có thông tin'}</p>
+                      </div>
                   </div>
               </div>
           `);
