@@ -23,7 +23,7 @@
                 logout();
             } else if (item.name === "Cơ sở sản xuất") {
                 window.location.href = '/DoanhNghiep';
-            } else if (item.name === "Tin tức"){
+            } else if (item.name === "Tin tức") {
                 window.location.href = "/";
             }
         });
@@ -61,5 +61,16 @@
 
     $(window).scroll(function () {
         $('.nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+    });
+
+    // Handle slide menu navigation
+    $('#slide-menu ul li a').click(function (event) {
+        event.preventDefault();
+        const itemName = $(this).text().trim();
+        if (itemName === "Tin tức") {
+            window.location.href = "/";
+        } else if (itemName === "Cơ sở sản xuất") {
+            window.location.href = "/DoanhNghiep";
+        }
     });
 });
